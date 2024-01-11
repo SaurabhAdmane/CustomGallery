@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.saurabh.customgallery.ClickListner
 import com.saurabh.customgallery.R
 import com.saurabh.customgallery.databinding.FragmentImageListBinding
+import com.saurabh.customgallery.model.ImageFiles
+import com.saurabh.customgallery.utility.CommonUtils
 import com.saurabh.customgallery.viewmodel.ImageGallerySharedViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -27,6 +29,7 @@ class ImageListDisplayFragment : Fragment(R.layout.fragment_image_list), ClickLi
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         binding = FragmentImageListBinding.inflate(inflater, container, false)
+        binding.toolbar.setNavigationOnClickListener { requireActivity().onBackPressed() }
         viewModel = ViewModelProvider(this).get(ImageGallerySharedViewModel::class.java)
         getArgs()
         binding.toolbar.title = folderName
@@ -56,6 +59,10 @@ class ImageListDisplayFragment : Fragment(R.layout.fragment_image_list), ClickLi
     }
 
     override fun onItemClicked(pictureFolderPath: String, folderName: String) {
+    }
 
+    override fun onImageItemClicked(imageLists: List<ImageFiles>, position:Int) {
+        val fragment = ImageBrowserFragment.newInstance(imageLists, position)
+        CommonUtils.replaceFragment(parentFragmentManager, fragment , R.id.fragment_container)
     }
 }

@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.saurabh.customgallery.ClickListner
 import com.saurabh.customgallery.R
 import com.saurabh.customgallery.databinding.FragmentFolderListBinding
+import com.saurabh.customgallery.model.ImageFiles
 import com.saurabh.customgallery.utility.CommonUtils
 import com.saurabh.customgallery.viewmodel.ImageGallerySharedViewModel
 import kotlinx.coroutines.flow.collectLatest
@@ -60,5 +61,9 @@ class FolderListFragment : Fragment(R.layout.fragment_folder_list), ClickListner
                 R.id.fragment_container
             )
         }
+    }
+
+    override fun onImageItemClicked(imageLists: List<ImageFiles>, position: Int) {
+
     }
 }

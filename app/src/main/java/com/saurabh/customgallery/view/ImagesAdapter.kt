@@ -29,7 +29,7 @@ class ImagesAdapter(
 
 
         holder.cardView.setOnClickListener(View.OnClickListener {
-            clickListner.onItemClicked(image.imagePath, image.imageName)
+            clickListner.onImageItemClicked(imagesList, position)
         })
     }
 
